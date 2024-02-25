@@ -10,6 +10,16 @@ const detalharUsuario = require('./controllers/controllersUsers/detalharUsuario'
 const editarUsuario = require('./controllers/controllersUsers/editarUsuario')
 const { schemaEditarUsuario } = require('./validations/validationEditarUsuario')
 
+const { schemaCadastroProduto } = require('./validations/validationCadastrarProduto')
+const cadastrarProduto = require('./controllers/controllerProduct/cadastrarProduto')
+const { schemaEditarProduto } = require('./validations/validationEditarProduto')
+const editarProduto = require('./controllers/controllerProduct/editarProduto')
+const listarProdutos = require('./controllers/controllerProduct/listarProdutos')
+const detalharProduto = require('./controllers/controllerProduct/detalharProduto')
+const deletarProduto = require('./controllers/controllerProduct/deletarProduto')
+const cadastrarCliente = require('./controllers/controllerClient/cadastrarCliente')
+const { schemaCadastroCliente } = require('./validations/validationCadastrarCliente')
+
 const router = express()
 
 router.get('/categorias', listarCategorias)
@@ -20,5 +30,13 @@ router.use(verificarLogin)
 
 router.get('/usuario', detalharUsuario)
 router.put('/usuario', validarRequisicao(schemaEditarUsuario), editarUsuario)
+
+router.post('/produto', validarRequisicao(schemaCadastroProduto), cadastrarProduto)
+router.put('/produto/:id', validarRequisicao(schemaEditarProduto), editarProduto)
+router.get('/produtos', listarProdutos)
+router.get('/produto/:id', detalharProduto)
+router.delete('/produto/:id', deletarProduto)
+
+router.post('/cliente', validarRequisicao(schemaCadastroCliente), cadastrarCliente)
 
 module.exports = router

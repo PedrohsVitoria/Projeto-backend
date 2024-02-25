@@ -22,13 +22,13 @@ const cadastrarUsuarios = async (req, res) => {
             })
             .returning(['nome', 'email'])
 
-        return res.status.json({
+        return res.status(201).json({
             mensagem: 'Usuário cadastrado com sucesso',
             usuario: usuarioCadastrado[0]
         })
 
     } catch (error) {
-
+        console.error(error.message);
         return res.status(500).json({ erro: "Erro interno do servidor" });
     }
 }
