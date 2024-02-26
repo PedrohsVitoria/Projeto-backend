@@ -19,6 +19,10 @@ const detalharProduto = require('./controllers/controllerProduct/detalharProduto
 const deletarProduto = require('./controllers/controllerProduct/deletarProduto')
 const cadastrarCliente = require('./controllers/controllerClient/cadastrarCliente')
 const { schemaCadastroCliente } = require('./validations/validationCadastrarCliente')
+const { schemaEditarCliente } = require('./validations/validationEditarCliente')
+const editarCliente = require('./controllers/controllerClient/editarCliente')
+const listarClientes = require('./controllers/controllerClient/listarClientes')
+const detalharCliente = require('./controllers/controllerClient/detalharCliente')
 
 const router = express()
 
@@ -38,5 +42,7 @@ router.get('/produto/:id', detalharProduto)
 router.delete('/produto/:id', deletarProduto)
 
 router.post('/cliente', validarRequisicao(schemaCadastroCliente), cadastrarCliente)
-
+router.put('/cliente/:id', validarRequisicao(schemaEditarCliente), editarCliente)
+router.get('/clientes', listarClientes)
+router.get('/cliente/:id', detalharCliente)
 module.exports = router

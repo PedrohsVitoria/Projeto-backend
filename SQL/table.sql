@@ -43,3 +43,15 @@ CREATE TABLE clientes (
     cidade VARCHAR(100),
     estado VARCHAR(100)
 );
+
+CREATE TABLE pedidos(
+	id SERIAL PRIMARY KEY, 
+  cliente_id INT REFERENCES clientes(id),
+  observacao text, 
+  valor_total int not null 
+);
+
+CREATE TABLE pedido_produtos (
+    id SERIAL PRIMARY KEY,
+    pedido_id 
+)
