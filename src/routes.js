@@ -23,6 +23,7 @@ const { schemaEditarCliente } = require('./validations/validationEditarCliente')
 const editarCliente = require('./controllers/controllerClient/editarCliente')
 const listarClientes = require('./controllers/controllerClient/listarClientes')
 const detalharCliente = require('./controllers/controllerClient/detalharCliente')
+const cadastrarPedido = require('./controllers/controllerOrder/cadastrarPedidos')
 
 const router = express()
 
@@ -45,4 +46,6 @@ router.post('/cliente', validarRequisicao(schemaCadastroCliente), cadastrarClien
 router.put('/cliente/:id', validarRequisicao(schemaEditarCliente), editarCliente)
 router.get('/clientes', listarClientes)
 router.get('/cliente/:id', detalharCliente)
+
+router.post('/pedido', validarRequisicao(schemaCadastroPedido), cadastrarPedido)
 module.exports = router

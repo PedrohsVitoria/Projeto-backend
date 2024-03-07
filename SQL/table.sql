@@ -53,5 +53,10 @@ CREATE TABLE pedidos(
 
 CREATE TABLE pedido_produtos (
     id SERIAL PRIMARY KEY,
-    pedido_id 
-)
+    pedido_id INT REFERENCES pedidos(id),
+    produto_id INT REFERENCES produtos(id),
+    quantidade_produto INT NOT NULL , 
+    valor_produto INT NOT NULL 
+);
+
+ALTER TABLE produtos ADD COLUMN produto_imagem varchar(255);
